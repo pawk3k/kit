@@ -13,8 +13,8 @@ let selectedDir = await arg(
   }))
 );
 const packageManager = await arg("Package Manager:", [
-  { name: "npm", description: "npm", value: "npm" },
   { name: "yarn", description: "yarn", value: "yarn" },
+  { name: "npm", description: "npm", value: "npm" },
 ]);
 
 // await exec(
@@ -55,4 +55,17 @@ if (packageManager === "npm") {
   await exec(`chmod +x ${selectedDir}/.husky/pre-commit`);
 
   await exec(`cd ${selectedDir} && npx husky install`);
+
+  const packageJson = await readJson(`${selectedDir}/package.json`);
+
+  const packageObject = JSON.parse(JSON.stringify(packageJson));
+
+  const packageObjectScripts = packageObject.scripts;
+  packageObjectScripts["prepare"] = "npx husky install";
+  const newJsonObject = {
+    ...packageObject,
+    scripts: { ...packageObjectScripts },
+  };
+
+  await writeJson(`${selectedDir}/package.json`, newJsonObject);
 }
