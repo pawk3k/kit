@@ -1,16 +1,14 @@
-import "@johnlindquist/kit"
+import "@johnlindquist/kit";
 
+import config from "../config";
 
-const homeDirPath = "Documents/http";
-let dirs = await readdir(home(homeDirPath));
+let dirs = await readdir(config.homeDirPath);
 
 let selectedDir = await arg(
   "Open Project:",
   dirs.map((dir) => ({
     name: dir,
-    description: home(homeDirPath, dir),
-    value: home(homeDirPath, dir),
   }))
 );
 
-edit(selectedDir)
+edit(selectedDir);

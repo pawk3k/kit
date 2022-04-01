@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "@johnlindquist/kit": "file:../.kit",
+    "octokit": "^1.7.1",
     "prettier": "^2.5.1"
   }
 }
