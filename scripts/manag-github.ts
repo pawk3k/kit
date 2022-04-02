@@ -30,30 +30,37 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 // );
 
 // edit(`${config.homeDirPath}/${repositoryName}`);
-if (freshRepo === "not-fresh") {
-  // create new repository using  template
+// if (freshRepo === "not-fresh") {
+//   // create new repository using  template
 
-  // await octokit.request(
-  //   "POST /repos/ryansonshine/typescript-npm-package-template/generate",
-  //   {
-  //     template_owner: "ryansonshine",
-  //     template_repo: "typescript-npm-package-template",
-  //     name: repositoryName,
-  //   }
-  // );
-  await octokit.repos.createUsingTemplate({
-    template_owner: "ryansonshine",
-    template_repo: "typescript-npm-package-template",
-    name: repositoryName,
-    private: true,
-  });
-  await octokit.request(
-    "POST /repos/pawk3k/typescript-npm-package-template/generate",
-    {
-      template_owner: "pawk3k",
-      template_repo: "typescript-npm-package-template",
-      name: repositoryName,
-      headers: {},
-    }
-  );
-}
+//   // await octokit.request(
+//   //   "POST /repos/ryansonshine/typescript-npm-package-template/generate",
+//   //   {
+//   //     template_owner: "ryansonshine",
+//   //     template_repo: "typescript-npm-package-template",
+//   //     name: repositoryName,
+//   //   }
+//   // );
+//   // await octokit.repos.createUsingTemplate({
+//   //   template_owner: "ryansonshine",
+//   //   template_repo: "typescript-npm-package-template",
+//   //   name: repositoryName,
+//   //   private: true,
+//   // });
+
+//   // await octokit.request(
+//   //   "POST /repos/pawk3k/typescript-npm-package-template/generate",
+//   //   {
+//   //     template_owner: "pawk3k",
+//   //     template_repo: "typescript-npm-package-template",
+//   //     name: repositoryName,
+//   //     headers: {},
+//   //   }
+//   // );
+//   // clone https://github.com/pawk3k/test-3.git repository using  octokit
+// }
+
+await octokit.request("GET /repos/{owner}/{repo}", {
+  owner: "pawk3k",
+  repo: "test-3.git",
+});
